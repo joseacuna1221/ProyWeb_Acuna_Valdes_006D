@@ -1,0 +1,13 @@
+{
+    "nombres":[
+    { "nombre": "Rocky", "estado": "por adoptar","imagen":"https://images.dog.ceo/breeds/hound-ibizan/n02091244_4394.jpg"},
+    { "nombre": "Bella", "estado": "adoptado","imagen":"https://images.dog.ceo/breeds/hound-walker/n02089867_1599.jpg" },
+    { "nombre": "Max", "estado": "adoptado","imagen":"https://images.dog.ceo/breeds/hound-walker/n02089867_1918.jpg" },
+    { "nombre": "Luna", "estado": "por adoptar","imagen":"https://images.dog.ceo/breeds/hound-afghan/n02088094_688.jpg" },
+    { "nombre": "Charlie", "estado": "adoptado","imagen":"https://images.dog.ceo/breeds/hound-blood/n02088466_6623.jpg" },
+    { "nombre": "Daisy", "estado": "adoptado","imagen":"https://images.dog.ceo/breeds/hound-ibizan/n02091244_3240.jpg" },
+    { "nombre": "Buddy", "estado": "adoptado","imagen":"https://images.dog.ceo/breeds/hound-afghan/n02088094_4072.jpg" },
+    { "nombre": "Lucy", "estado": "por adoptar","imagen":"https://images.dog.ceo/breeds/hound-blood/n02088466_12003.jpg" },
+    { "nombre": "Cooper", "estado": "adoptado","imagen":"https://images.dog.ceo/breeds/hound-blood/n02088466_5832.jpg" }
+    ]
+}
