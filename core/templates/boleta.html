@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Boleta de Compra</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-</head>
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block css %}<link rel="stylesheet" href="{% static 'css/config1.css' %}">{% endblock %}
+
+{% block content %}
 <body>
     <div class="container">
         <h1 class="text-center">Boleta de Compra</h1>
@@ -21,9 +23,9 @@
                 {% for key, value in carrito.items %}
                     <tr>
                         <td>{{ value.nombre }}</td>
-                        <td>${{ value.precio }}</td>
+                        <td>${{ value.precio|floatformat:2 }}</td>
                         <td>{{ value.cantidad }}</td>
-                        <td>${{ value.precio|floatformat:2 }} * {{ value.cantidad }}</td>
+                        <td>${{ value.subtotal|floatformat:2 }}</td>
                     </tr>
                 {% endfor %}
                 <tr>
@@ -34,8 +36,7 @@
         </table>
         <div class="text-center">
             <a href="{% url 'limpiar_carrito' %}" class="btn btn-outline-warning">Limpiar Carrito</a>
-            <a href="#" class="btn btn-outline-primary">Confirmar Compra</a>
         </div>
     </div>
 </body>
-</html>
+{% endblock %}

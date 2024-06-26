@@ -122,31 +122,6 @@ def limpiar_carrito(request):
     carrito_compra.limpiar()
     return redirect('tienda')
 
-def generar_boleta(request):
-    carrito = Carrito(request)
-    productos_carrito = carrito.get_productos()
-    total = carrito.get_total()
-
-    boleta = Boleta(total=total)
-    boleta.save()
-
-    detalles_boleta = []
-    for producto in productos_carrito:
-        detalle = detalle_boleta(id_boleta=boleta, producto=producto['producto'], cantidad=producto['cantidad'], subtotal=producto['subtotal'])
-        detalle.save()
-        detalles_boleta.append(detalle)
-
-    request.session['boleta'] = boleta.id_boleta
-    carrito.limpiar()
-
-    datos = {
-        'productos': detalles_boleta,
-        'fecha': boleta.fechaCompra,
-        'total': boleta.total
-    }
-
-    return render(request, 'detallecarrito.html', datos)
-
 
 def restar_producto_carrito(request, id):
     producto = Producto.objects.get(idProd=id)
@@ -168,10 +143,20 @@ def eliminar_producto_carrito(request, id):
 
 def generar_boleta(request):
     carrito = request.session.get('carrito', {})
+    total = 0
     
-    total = Decimal(0.0)
     for key, value in carrito.items():
-        total += Decimal(value['precio']) * value['cantidad']
+
+        producto = Producto.objects.get(idProd=key)
+ 
+        subtotal = producto.precio * value['cantidad']
+        total += subtotal
+        producto.stock -= value['cantidad']
+        producto.save()
+        
+        value['subtotal'] = subtotal
+
+    request.session['carrito'] = {}
     
     context = {
         'carrito': carrito,
