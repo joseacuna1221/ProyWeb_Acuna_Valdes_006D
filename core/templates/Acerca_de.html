@@ -1,0 +1,102 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block title %}Sobre nosotros{% endblock %}
+
+{% block css %}<style>
+    .body{
+        background: linear-gradient(#0cb7f2,  white 60% );
+        background-repeat: no-repeat;
+        height: 100%;
+        margin: 0;
+    }
+
+    .video-container{
+        position: relative;
+        padding-bottom: 70%;
+        padding-top: 0px;
+        height: 0;
+        overflow: hidden;
+    }
+
+    .video-container iframe{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    @media (max-width: 576px) {
+        .navbar-brand img {
+            width: 60px;
+            height: auto;
+            margin-left: 0;
+        }
+        .navbar-nav {
+            margin-left: 0;
+        }
+        .mt-md-5 {
+            margin-top: 3rem !important;
+        }
+    }
+</style>{% endblock %}
+
+{% block content %}  
+<main class="container">
+    <div class="container">
+        <div class="row mt-md-5">
+            <div class="col-md-6">
+                <img src="{% static 'img/jug.jpg' %}" class="img-fluid" alt="Foto Fundacion">
+            </div>
+            <div class="col-md-6 mt-md-0 mt-3">
+                <h2>Información de la Fundacion</h2>
+                <p style="text-align: justify; justify-content: center;">
+                 En un tranquilo pueblo, nació "Patitas Felices", una fundación dedicada al rescate y refugio de 
+                    animales sin hogar. Con pasión y entrega, el equipo de la fundación brindaba atención médica, 
+                    alimento y un hogar temporal a perros y gatos abandonados, buscando luego familias amorosas 
+                    para su adopción.
+
+                    Con el deseo de expandir su impacto y encontrar más corazones solidarios, 
+                    "Patas Felices" invita a todos a suscribirse a su boletín informativo, 
+                    donde comparten historias inspiradoras y formas de colaborar en esta noble causa.
+
+                    Juntos, están escribiendo un nuevo capítulo de esperanza para los animales desamparados.
+                </p>
+                <form>
+                    <div class="mb-3">
+                        <label for="emailInput" class="form-label">Mantengase informado:</label>
+                        <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text">Nunca compartiremos su correo electrónico con nadie más.</div>
+                    </div>
+                    <button type="submit" class="btn btn-danger">Suscribete!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="container">
+        <h2>
+            Sobre nosotros
+        </h2>
+        <hr>
+        <p style="justify-content: center; text-align: justify;">
+            Dogicat fundada a partir a mediados del 2024, ademas del cariño que tenemos a nuestras mascotas, nuestra empresa dedicada a vender productos para todo tipo y raza de mascotas, tiene por misión contribuir a todas las mascotas del mundo a tener una mejor conformidad asi como lograr tener una mayor cercanía y confianza a las mascotas. Además nuestra empresa,
+            tiene como objetivo ser parte de la colecta de una fundación conocido como "Patitas Felices", para ayudar a los Animales de calle con problemas para adaptarse a la sociedad, alimentación y salud colaborando con donativos tanto parte de la ganancia otorgada al vender nuestros productos, 
+            como brindarles compañia y la atención de algun peludo amiguito para tener mayor afabilidad a ser parte de nuestra sociedad.
+        </p>
+        <br> 
+    
+    </div>
+    <div class="container">
+        <h2>Video promocional</h2>
+        <br>
+        <div class="col">
+            <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Fv2yz1NNUuQ?si=sOqDHQrwOJ6uQCMD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>        
+</main>
+    {% endblock %}

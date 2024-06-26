@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Boleta de Compra</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Boleta de Compra</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio Unitario</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, value in carrito.items %}
+                    <tr>
+                        <td>{{ value.nombre }}</td>
+                        <td>${{ value.precio }}</td>
+                        <td>{{ value.cantidad }}</td>
+                        <td>${{ value.precio|floatformat:2 }} * {{ value.cantidad }}</td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="3" class="text-right">Total:</td>
+                    <td>${{ total }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="text-center">
+            <a href="{% url 'limpiar_carrito' %}" class="btn btn-outline-warning">Limpiar Carrito</a>
+            <a href="#" class="btn btn-outline-primary">Confirmar Compra</a>
+        </div>
+    </div>
+</body>
+</html>

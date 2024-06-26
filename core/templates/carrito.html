@@ -1,0 +1,49 @@
+<div class="col-4">
+    <div class="alert alert-warning">
+        <table class="table table-bordered">
+            <thead>
+                <tr class="text-center">
+                    <td colspan="3" style="font-weight: bold; font-size: 18px;">Carrito</td>
+                </tr>
+                <tr>
+                    <td>Nombre</td>
+                    <td>Precio</td>
+                    <td>Cantidad</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% if request.session.carrito %}
+                    {% for key, prod in request.session.carrito.items %}
+                        <tr>
+                            <td>{{ prod.nombre }}</td>
+                            <td>{{ prod.precio }}</td>
+                            <td>
+                                {% if prod.cantidad > 0 %}
+                                    <a href="{% url 'restar_producto_carrito' id=key %}" class="badge btn btn-secondary">-</a>
+                                    {{ prod.cantidad }}
+                                    <a href="{% url 'agregar_producto_carrito' id=key %}" class="badge btn btn-primary">+</a>
+                                    <a href="{% url 'eliminar_producto_carrito' id=key %}" class="badge btn btn-warning">x</a>
+                                
+                                {% else %}
+                                    <span>Sin stock</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                   <td colspan="3" class="text-center">Sin Productos</td>
+               </tr>
+           {% endif %}
+            </tbody>
+        </table>
+    </div>
+    <div class="row text-center">
+        <div class="col-6">
+            <a href="{% url 'limpiar_carrito' %}" class="btn btn-outline-warning">Limpiar</a>
+        </div>
+        <div class="col-6">
+            <a href="{% url 'generar_boleta' %}" class="btn btn-outline-warning">Comprar</a>
+        </div>
+    </div>
+</div>

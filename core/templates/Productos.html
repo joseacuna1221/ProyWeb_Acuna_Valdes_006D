@@ -1,0 +1,67 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block title %}Productos{% endblock %}
+
+{% block css %}<link rel="stylesheet" href="{% static 'css/EsPro.css' %}">{% endblock %}
+
+{% block content %}
+<main class="container" style="margin-top: 40px;">
+    <a href="{% url 'crear_producto' %}" class="btn btn-warning mt-2" style="margin-bottom: 20px;">crear</a>
+    <br>
+    {% for categoria, productos in productos_por_categoria.items %}
+    <!-- Título de la categoría -->
+    <div class="title">
+        <h1 style="border: 5px ridge green; text-align: center; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">{{ categoria.capitalize }}</h1>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row">
+            {% for producto in productos %}
+            <!-- Estructura de tarjeta para cada producto -->
+            <div class="col mb-4">
+                <div class="card" style="width: 300px;">
+                    <img src="{{ producto.imagen.url }}" class="rounded-circle" alt="{{ producto.nombre }}">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ producto.nombre }}</h4>
+                        <p class="card-text">{{ producto.descripcion }}</p>
+                        <p class="card-text">Stock: {{ producto.stock }}</p>
+                        <!-- Botones, detalles, etc. -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal{{ categoria }}{{ forloop.counter }}">Detalles</button>
+                        {% if user.is_superuser %}
+                            <a href="{% url 'modificar_producto' producto.idProd %}" class="btn btn-warning mt-2">Modificar</a>
+                            <a href="{% url 'eliminar_producto_admin' producto.idProd %}" class="btn btn-danger mt-2">Eliminar</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="modal{{ categoria }}{{ forloop.counter }}">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Información de Stock</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h5>{{ producto.nombre }}</h5>
+                            <p>{{ producto.detalles }}</p>
+                            <p class="gray">Precio: ${{ producto.precio }}</p>
+                            <p class="gray">Stock: {{ producto.stock }}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+
+</main>
+</body>
+<br>
+{% endblock %}

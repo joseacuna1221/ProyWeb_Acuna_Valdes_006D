@@ -1,0 +1,56 @@
+{% extends "base/base.html" %}
+{% block title %}Eliminar Producto{% endblock %}
+{% block content %}
+<main class="container">
+    <br>
+    <h2>Eliminando Producto</h2>
+    <br>
+
+    <form action="{% url 'eliminar_producto_admin' producto.idProd %}" method="POST">
+        {% csrf_token %}
+        
+        <p>¿Estás seguro de que quieres eliminar el siguiente producto?</p>
+
+        <div class="form-group">
+            <strong>Categoría:</strong> {{ producto.categoria }}
+        </div>
+
+        <div class="form-group">
+            <strong>ID Producto:</strong> {{ producto.idProd }}
+        </div>
+
+        <div class="form-group">
+            <strong>Nombre:</strong> {{ producto.nombre }}
+        </div>
+
+        <div class="form-group">
+            <strong>Descripción:</strong> {{ producto.descripcion }}
+        </div>
+
+        <div class="form-group">
+            <strong>Precio:</strong> {{ producto.precio }}
+        </div>
+
+        <div class="form-group">
+            <strong>Detalles:</strong> {{ producto.detalles }}
+        </div>
+
+        <div class="form-group">
+            <strong>Stock:</strong> {{ producto.stock }}
+        </div>
+
+        {% if producto.imagen %}
+            <img src="{{ producto.imagen.url }}" width="200px">
+        {% else %}
+            <h4 style="color:red">Producto sin foto</h4>
+        {% endif %}
+        
+        <div class="form-group">
+            <strong>Imagen:</strong> {{ producto.imagen }}
+        </div><br>
+
+        <input type="submit" value="Confirmar Eliminación" class="btn btn-danger">
+        <a href="{% url 'lista_productos' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</main>
+{% endblock %}

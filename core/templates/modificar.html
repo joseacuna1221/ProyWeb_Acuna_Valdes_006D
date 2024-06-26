@@ -1,0 +1,60 @@
+{% extends "base/base.html" %}
+{% block title %}Modificando Producto{% endblock %}
+{% block content %}
+<main class="container">
+    <br>
+    <h2>Modificando Producto</h2>
+    <br>
+
+    <form action="{% url 'modificar_producto' producto.idProd %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            {{ form.categoria.label }}
+            {{ form.categoria }}
+        </div><br>
+
+        <div class="form-group">
+            {{ form.idProd.label }}
+            {{ form.idProd }}
+        </div><br>
+
+        <div class="form-group">
+            {{ form.nombre.label }}
+            {{ form.nombre }}
+        </div><br>
+
+        <div class="form-group">
+            {{ form.descripcion.label }}
+            {{ form.descripcion }}
+        </div><br>
+
+        <div class="form-group">
+            {{ form.precio.label }}
+            {{ form.precio }}
+        </div><br>
+
+        <div class="form-group">
+            {{ form.detalles.label }}
+            {{ form.detalles }}
+        </div><br>
+
+        <div class="form-group">
+            {{ form.stock.label }}
+            {{ form.stock }}
+        </div><br>
+
+        {% if producto.imagen %}
+            <img src="{{ producto.imagen.url }}" width="200px">
+        {% else %}
+            <h4 style="color:red">Producto sin foto</h4>
+        {% endif %}
+        <div class="form-group">
+            {{ form.imagen.label }}
+            {{ form.imagen }}
+        </div><br>
+
+        <input type="submit" value="Modificar" class="btn btn-outline-warning">
+    </form>
+</main>
+{% endblock %}

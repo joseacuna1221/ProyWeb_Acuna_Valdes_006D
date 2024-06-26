@@ -1,0 +1,61 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block css %}<link rel="stylesheet" href="{% static 'css/config1.css' %}">{% endblock %}
+
+{% block content %}
+<main class="container">
+    <br>
+    <h2>Creando Producto</h2>
+    <br>
+    
+    <form action="{% url 'crear_producto' %}" method="POST" enctype="multipart/form-data" id="formulario">
+        {% csrf_token %}
+
+        <div class="form-group">
+            {{ form.categoria.label }}
+            {{ form.categoria }}
+        </div>
+
+        <div class="form-group">
+            {{ form.idProd.label }}
+            {{ form.idProd }}
+        </div><br>
+    
+        <div class="form-group">
+            {{ form.nombre.label }}
+            {{ form.nombre }}
+        </div><br>
+    
+        <div class="form-group">
+            {{ form.descripcion.label }}
+            {{ form.descripcion }}
+        </div><br>
+    
+        <div class="form-group">
+            {{ form.imagen.label }}
+            {{ form.imagen }}
+        </div><br>
+    
+        <div class="form-group">
+            {{ form.precio.label }}
+            {{ form.precio }}
+        </div><br>
+    
+        <div class="form-group">
+            {{ form.detalles.label }}
+            {{ form.detalles }}
+        </div><br>
+
+        <div class="form-group">
+            {{ form.stock.label }}
+            {{ form.stock }}
+        </div><br>
+        
+        <input type="submit" value="Guardar" class="btn btn-primary">
+    </form>
+</main>
+{% endblock %}
